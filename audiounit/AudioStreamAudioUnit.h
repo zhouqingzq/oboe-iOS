@@ -5,6 +5,7 @@
 #include "oboe/AudioStreamBuilder.h"
 #include "oboe/AudioStream.h"
 #include "oboe/Definitions.h"
+#include <AudioToolbox/AudioToolbox.h>
 
 namespace oboe {
 
@@ -17,7 +18,15 @@ public:
 public:
     /* return true if AudioUnit is support */
     static bool isSupported();
-
+    AudioStreamBuilder *streamBuider;
+    
+private:
+    AudioQueueRef audioQueue;
+    AudioQueueBufferRef audioQueueBuffer[3];
+    AudioComponentInstance componetInstance;
+    AudioComponent component;
+    dispatch_queue_t playerTaskQueue;
+    
 public:
     /* AudioStream virtual method */
     Result open() override;
@@ -49,7 +58,7 @@ public:
         return AudioApi::AudioUnit;
     }
 
-    DataCallbackResult callOnAudioReady(udioStream *stream, void *audioData, int32_t numFrames);
+    DataCallbackResult callOnAudioReady(audioStream *stream, void *audioData, int32_t numFrames);
 
 };
 
