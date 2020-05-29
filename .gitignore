@@ -1,0 +1,10 @@
+Podfile.lock
+Pods/
+Oboe.xcworkspace/
+Oboe.xcodeproj/xcuserdata/
+Oboe.xcodeproj/project.xcworkspace
+build.log
+buildTimeNode.txt
+Build/
+*/.DS_Store
+.DS_Store
